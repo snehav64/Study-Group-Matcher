@@ -1,0 +1,11 @@
+const express = require('express');
+const { createGroup, listGroups, myGroups, getGroup, updateGroup, leaveGroup } = require('../controllers/groupController');
+const { protect } = require('../middleware/authMiddleware');
+const router = express.Router();
+router.post('/', protect, createGroup);
+router.get('/', protect, listGroups);
+router.get('/mine', protect, myGroups);
+router.get('/:id', protect, getGroup);
+router.put('/:id', protect, updateGroup);
+router.delete('/:id/leave', protect, leaveGroup);
+module.exports = router;
